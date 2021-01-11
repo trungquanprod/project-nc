@@ -1,0 +1,1039 @@
+
+<!DOCTYPE html>
+<html lang="vi" prefix="og: https://ogp.me/ns#">
+<head>
+<title>Find UID</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="icon" href="./img/cropped-FAV-32x32.png" sizes="32x32">
+<link rel="icon" href="./img/cropped-FAV-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="./img/cropped-FAV-180x180.png">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+        a,
+        a:hover,
+        a:active,
+        .btn-link,
+        .btn-link:hover,
+        .btn-link:active {
+            text-decoration: none;
+            color: #53585c;
+            font-weight: bold;
+        }
+
+        #header .hoverYellow:hover {
+            cursor: pointer;
+            border-bottom: 3px yellow groove;
+            border-radius: 3px;
+        }
+
+
+
+        body {
+            color: #53585c;
+            background: #fff;
+            font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-anchor: none;
+            overflow-x: hidden;
+        }
+
+        h3 {
+            color: #000000;
+            font-family: "Montserrat", Sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 2.2em;
+        }
+
+        #btn_tips:hover,
+        #btn_addto:hover {
+            transition: 0.2s;
+            transition-delay: 0.2s;
+            transform: scale(1.1)
+        }
+
+        .modal.left .modal-dialog,
+        .modal.right .modal-dialog {
+            position: fixed;
+            margin: auto;
+            width: 500px;
+            height: 100%;
+            -webkit-transform: translate3d(0%, 0, 0);
+            -ms-transform: translate3d(0%, 0, 0);
+            -o-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+
+        .modal.left .modal-content {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .modal.left .modal-body {
+            padding: 15px 15px 80px;
+        }
+
+        /*Left*/
+        .modal.left.fade .modal-dialog {
+            left: 0;
+            top: 20%;
+            -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+            transition: opacity 0.3s linear, left 0.3s ease-out;
+
+        }
+
+        .modal.left.fade.in .modal-dialog {
+            left: 0;
+        }
+        @media only screen and (max-width: 768px){ .off-mb{ display:none;}}
+        @media only screen and (min-width: 960px) {
+        .hidedesktop{display:none;}
+        }
+        /* ----- MODAL STYLE ----- */
+        ::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+
+        #tipsModal .modal-content {
+            border-radius: 0;
+            border: none;
+            background-color: transparent;
+        }
+
+        #tipsModal .modal-header {
+            background-color: transparent;
+        }
+
+        #tipsModal .modal-backdrop {
+            background-color: rgba(0, 0, 0, .0001) !important;
+        }
+
+        .bg-lightwarning {
+            background-color: #eee9d7;
+            color: #000000;
+            border-radius: 20px;
+            border: 1px gray dashed;
+            margin-bottom: 20px;
+        }
+
+        .modal-dialog-full-width {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: none !important;
+
+        }
+
+        .modal-content-full-width {
+            height: auto !important;
+            min-height: 100% !important;
+            border-radius: 0 !important;
+            background-color: #ececec !important
+        }
+
+        .modal-header-full-width {
+            border-bottom: 1px solid #9ea2a2 !important;
+        }
+
+        .modal-footer-full-width {
+            border-top: 1px solid #9ea2a2 !important;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .borderleftbot {
+            border-left: 1px dashed orange;
+            border-bottom: 1px dashed orange;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .marginlr0 {
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+        }
+
+        #body {
+            margin-top: 15px !important;
+        }
+
+        #findHistory {
+            bottom: -10%;
+        }
+
+        #mytabcontent {
+            width: 60%;
+        }
+
+        #footer img {
+            position: absolute;
+            top: -120%;
+            left: 25%;
+        }
+
+        @media screen and (max-width: 600px) {
+            #header {
+                display: none;
+            }
+
+            #mobileHead li {
+                border-bottom: 1px solid gray;
+
+            }
+
+            #body {
+                margin-top: 0px !important;
+            }
+
+            .modal.left .modal-dialog {
+                width: 100%;
+            }
+
+            #findHistory {
+                bottom: -5%;
+            }
+
+            #mytabcontent {
+                width: 100%;
+            }
+
+            #mytabcontent .card button {
+                text-align: justify;
+            }
+
+            #footer img {
+                position: fixed;
+                bottom: 35%;
+                left: 48%;
+                top: unset;
+            }
+        }
+
+        /* modal responsive  */
+
+        #mobileHead a {
+            color: white;
+        }
+
+        /* .topnav .icon {
+            display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav div:not(:first-child) {
+                display: none;
+            }
+
+            .topnav a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav.responsive {
+                position: relative;
+                background-color: #53585c;
+                color: white;
+            }
+
+            .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .topnav.responsive div {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        } */
+        /* css footer 4 tool */
+        ul.pricing-list {
+    line-height: 24px;
+}
+        @media only screen and (min-width: 240px){
+.btn-action {
+    padding: 10px 24px;
+    background: #6c63ff;
+    border: 2px solid;
+    border-color: #6c63ff;
+    border-radius: 100px;
+    box-shadow: 0 3px 15px 0 rgba(0,0,0,.25);
+    font-family: open sans,serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    margin: 20px 10px 0 0;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    transition: .2s;
+}
+        img.rounded-circle {
+    width: 25%;
+    padding: 10px 0px 30px 0px;
+    border: none!important;
+}
+    .price {
+           font-size: 24px;
+           color: blue;
+           font-weight: 700;
+           padding-bottom: 30px;
+             }
+
+    @media (min-width: 1200px) .container {{
+           max-width: 1140px;
+    }}
+    .container {
+    padding: 50px 0px 50px 0px;
+}
+    ul.pricing-list {
+    text-align: left;
+    font-size: 15px;
+}
+ul.pricing-list-three {
+    margin-bottom: 60px;
+    font-size: 15px;
+    text-align: left;
+    line-height: 24px;
+}
+ul.pricing-list-four {
+    margin-bottom: 105px;
+    font-size: 15px;
+    text-align: left;
+    line-height: 24px;
+}
+@media only screen and (min-width: 240px){
+h2.tool {
+    font-size: 33px;
+    font-weight: 700;
+    color: #162b61;
+    padding-bottom: 30px;
+}}
+.text-center {
+    text-align: center!important;
+}
+@media only screen and (min-width: 240px)
+.pricing-sm .plan {
+    padding: 20px 0;
+}
+@media only screen and (min-width: 240px){
+.pricing-sm .price {
+    font-size: 30px;
+    font-family: open sans,serif;
+    margin: 30px 0 0;
+    padding-bottom: 20px;
+    color: #387ed1;
+}
+@media (min-width: 576px)
+.col-sm-12 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+        .btnHoverBold:hover{
+            background-color: rgba(0, 38, 255, 0.08);
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid" style="text-align: center; padding-left: 0;padding-right: 0;">
+<div id="header" class="row bg-dark p-2 pt-3" style="color: white; position: fixed; top: 0; width: 100%; transition: top 0.3s; z-index: 99; margin-left: 0px; font-size: larger;">
+<div class="col-md-2 col-sm-12"></div>
+<div class="col-md-3 col-sm-12 hoverYellow">
+<p style="margin-top: 10px; margin-bottom: 10px;">Check UID/ FACEBOOK<i class="fa fa-search ml-2"></i></p>
+</div>
+<div class="col-md-3 col-sm-12" style="cursor: pointer;">
+<p style="margin-top: 10px; margin-bottom: 10px;" href="#scroll-target">Phần mềm miễn phí khác<i class="fa fa-lightbulb-o ml-2"></i></p>
+</div>
+<div class="col-md-3 col-sm-12" style="cursor: pointer;">
+<p style="margin-top: 10px; margin-bottom: 10px;" data-toggle="modal" data-target="#tipsModal">Blog<i class="fa fa-book ml-2"></i></p>
+</div>
+<div class="col-md-2 col-sm-12">
+</div>
+</div>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="collapsibleNavbar" style="text-align: left;">
+<ul class="navbar-nav" id="mobileHead">
+<li class="nav-item">
+<a class="nav-link" href="#">
+<p>Check UID/ FACEBOOK<i class="fa fa-search ml-2"></i></p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">
+<p data-toggle="modal" data-target="#modalMoreApp">Phần mềm miễn phí khác<i class="fa fa-lightbulb-o ml-2"></i></p>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">
+<p data-toggle="modal" data-target="#tipsModal">Blog<i class="fa fa-book ml-2"></i></p>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+
+<div class="modal fade top" id="modalMoreApp" tabindex="-1" role="dialog" aria-labelledby="modalMoreApp" aria-hidden="true">
+<div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+<div class="modal-content-full-width modal-content ">
+<div class="modal-body">
+<div class="container-fluid moreAppContent">
+ <div class="row">
+<div class="col borderleftbot">
+<div class="row marginlr0">
+<div class="col-md-3">
+<img src="./img/simple-place-3.png" alt="">
+</div>
+<div class="col-md-9">
+<h4>Facebook Search</h4>
+<button class="btn btn-primary rounded">Sử dụng ngay</button>
+</div>
+</div>
+<div class="row marginlr0">
+<p>Tìm kiếm khách hàng tiềm năng nâng cao theo nghề nghiệp, giới tính, độ tuổi…
+trên Facebook</p>
+</div>
+</div>
+<div class="col borderleftbot">
+<div class="row marginlr0">
+<div class="col-md-3">
+<img src="./img/simple-seeding-2.png" alt="">
+</div>
+<div class="col-md-9">
+<h4>Simple Seeding</h4>
+<button class="btn btn-primary rounded">Sử dụng ngay</button>
+</div>
+</div>
+<div class="row marginlr0">
+<p>Phần mềm hỗ trợ tăng like, tăng comment cho bài viết.</p>
+</div>
+</div>
+<div class="col borderleftbot">
+<div class="row marginlr0">
+<div class="col-md-3">
+<img src="./img/simple-seeding-mobile.png" alt="">
+</div>
+<div class="col-md-9">
+<h4>Quét like fanpage</h4>
+<button class="btn btn-primary rounded">Sử dụng ngay</button>
+</div>
+</div>
+<div class="row marginlr0">
+<p>Hệ thống hỗ trợ quét danh sách những người like fanpage… hoàn toàn MIỄN PHÍ.
+</p>
+</div>
+</div>
+<div class="col borderleftbot">
+<div class="row marginlr0">
+<div class="col-md-3">
+<img src="./img/SUM.png" alt="">
+</div>
+<div class="col-md-9">
+<h4>Sum.vn</h4>
+<button class="btn btn-primary rounded">Sử dụng ngay</button>
+</div>
+</div>
+<div class="row marginlr0">
+<p>Hệ thống rút gọn link TOP 1 Việt Nam</p>
+</div>
+</div>
+</div>
+ </div>
+</div>
+<div class="modal-footer-full-width  modal-footer">
+<button type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal" style="margin: auto;">X</button>
+</div>
+</div>
+</div>
+</div>
+<div class="row p-3 mt-3 justify-content-center" style="padding-right: 0px!important;margin-bottom: 35px;" id="body">
+<div class="col-md-2 col-sm-12">
+<button id="btn_tips" class="btn btn-success" data-toggle="modal" data-target="#tipsModal" style="width: 100%; position: absolute; left: -20%; top: 20px;padding-left: 0; font-size: larger; z-index: 9; font-weight: bold ;fill: #025F26;
+                    color: #025F26;
+                    background-color: #E9F4EB;
+                    border-style: solid;
+                    border-width: 1px 1px 1px 1px;
+                    border-color: #DCEFE0;"><i class="fa fa-lightbulb-o pr-2"></i><span style="font-size: smaller;">Tips: Khai thác sđt hiệu
+quả</span>
+</button>
+
+<div class="modal left fade" id="tipsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+<div class="container">
+<div class="row bg-lightwarning pt-2 pb-2">
+<div class="col-md-4 pt-1 m-auto">
+<img src="./img/finduid-1.png" alt="" class="w-100">
+</div>
+<div class="col-md-8" style="text-align: right;">
+<a href="https://atpsoftware.vn/cach-tim-facebook-nhanh-bang-sdt-va-lay-id-facebook-nhanh-chong-tai-finduid-com.html" target="_blank">
+<p style="text-align: left; margin-bottom: 0px;">Cách tìm Facebook nhanh
+bằng SĐT và lấy ID Facebook nhanh chóng tại Finduid.com</p>
+</a>
+<br>
+<button id="tip1" class="btn btn-success">Xem hướng dẫn</button>
+</div>
+</div>
+<div class="row bg-lightwarning pt-2 pb-2">
+<div class="col-md-12" style="text-align: right;">
+<a href="https://atpsoftware.vn/huong-dan-ket-ban-full-2k-ban-zalo-khong-can-sdt.html" target="_blank">
+<p style="text-align: left; margin-bottom: 0px;">Hướng dẫn kết bạn full
+2k bạn zalo không cần sdt</p>
+</a>
+<br>
+<button id="tip2" class="btn btn-success">Xem hướng dẫn</button>
+</div>
+</div>
+ <div class="row bg-lightwarning pt-2 pb-2">
+<div class="col-md-12" style="text-align: right;">
+<a href="https://atpsoftware.vn/vi-sao-nen-ban-hang-tren-zalo-lam-the-nao-de-full-2000-ban-zalo.html" target="_blank">
+<p style="text-align: left; margin-bottom: 0px;">Vì sao nên bán hàng
+trên Zalo? Làm thế nào để full 2000 bạn Zalo?</p>
+</a>
+<br>
+<button id="tip3" class="btn btn-success">Xem hướng dẫn</button>
+</div>
+</div>
+<div class="row bg-lightwarning pt-2 pb-2">
+<div class="col-md-12" style="text-align: right;">
+<a href="https://atpsoftware.vn/vi-sao-nen-ban-hang-tren-zalo-lam-the-nao-de-full-2000-ban-zalo.html" target="_blank">
+<p style="text-align: left; margin-bottom: 0px;">Marketing – bán hàng
+trên zalo cá nhân: Kinh nghiệm bán TRĂM ĐƠN HÀNG – Bí mật chưa được
+tiết lộ</p>
+</a>
+<br>
+<button id="tip4" class="btn btn-success">Xem hướng dẫn</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-7 col-sm-12 shadow rounded p-4">
+<div class="row p-4" style="border-bottom: 1px grey dashed;">
+<div class="col-md-12 col-sm-12">
+<h5 style=" font-weight: bolder;">FINDUID - Công Cụ Miễn Phí Giúp Bạn Tra Cứu Thông Tin Số Điện
+Thoại Và Tìm UID Facebook</h5>
+<img src="./img/logo-atpsoftware-500-Copy.png" style="width: 35%; margin-top: 20px;" alt="" srcset="">
+</div>
+</div>
+<div class="row">
+<div class="col-md-12 col-sm-12">
+<ul class="nav justify-content-center nav-pills p-3" id="ul_findFb">
+<li id="get_fb" class=" " style="width: 35%; border-radius: 5%; color: grey; ">
+<a data-toggle="pill" href="#home" style="display: block;">
+<i class="fa fa-facebook-square mr-2"></i>
+<span style="color: #7B7B7B; font-size: medium; font-weight: normal;">TÌM FACEBOOK <br></span><br></a></li>
+<li id="get_uid" class="active mr-5" style="width: 35%; border-radius: 5%; color: grey; border-bottom: 3px blue solid; ">
+<a data-toggle="pill" href="#menu1" style="display: block;"><i class="fa fa-facebook mr-2"></i><span style="color: #7B7B7B; font-size: medium; font-weight: normal;
+                                    ">TÌM UID
+FACEBOOK <br></span><br></a></li>
+</ul>
+<div class="tab-content" style="text-align: center; margin: auto;" id="mytabcontent">
+ <div id="home" class="tab-pane fade  " style="position: relative;">
+<h5 class="p-4">Công cụ tìm kiếm tài khoản Facebook từ một số điện thoại bất kỳ.</h5>
+<p class="p-2" style="width: 85%; margin: auto; font-size: smaller; margin-bottom: 30px!important;">Bằng cách nhập dữ liệu trên hệ thống tìm kiếm
+của chúng
+tôi, bạn đã đồng ý với
+<a style="color: #0063FF;" href="https://atpsoftware.vn/dieu-khoan-su-dung.html" target="_blank">Điều khoản sử dụng</a> và <a style="color: #0063FF;" target="_blank" href="https://atpsoftware.vn/chinh-sach-bao-mat.html">Chính sách bảo mật</a> của chúng
+tôi.</p>
+<form method="POST" action="https://id.atpsoftware.vn/">
+<div class="input-group mb-3 m-auto" style="width: 90%;">
+<input type="tel" name="phone" placeholder="Nhập số điện thoại..." class="form-control rounder" autocapitalize="none" style="background-color: #e9ebeb; border-top-left-radius: 20px;border-bottom-left-radius: 20px; border: 2px solid blue;">
+<div class="input-group-append">
+<button class="btn btn-primary" type="submit" name="getid" style="border-top-right-radius: 20px;border-bottom-right-radius: 20px; width: 70px;">
+<i class="fa fa-search"></i></button>
+</div>
+</div><center>
+<p><div class="g-recaptcha form-field" data-sitekey="6LcvvTkUAAAAAPtXc8a8d1Z8cKAQnExu8pqbIRIH"></div></p>
+</center>
+<br>
+<p>
+</p>
+</form>
+<span style="font-size: larger; margin-top: 20px;">Số lượt check còn lại trong ngày:
+</span><b class="text-danger" style="font-size: xx-large;"></b>
+<div style="text-align: left; margin-bottom: 50px;margin-top: 30px;">
+<h4>Lợi ích khi sử dụng FindUID?</h4>
+<div id="accordion">
+<div class="card">
+<div class="card-header" id="headingOne">
+<h5 class="mb-0">
+<button id="btn_collap1" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-chevron-right" id="iconCol1"></i>
+Xác thực thông tin khách hàng
+</button>
+</h5>
+</div>
+<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+<div class="card-body">
+Biết được Facebook cá nhân của khách hàng sẽ nắm bắt thêm nhiều
+thông tin của họ và dễ dàng chốt sales hơn.
+Ngoài ra cũng có thể xác thực xem thông tin của khách hàng có trùng
+khớp với dữ liệu được cung cấp hay không.
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header" id="headingTwo">
+<h5 class="mb-0">
+<button id="btn_collap2" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-chevron-right" id="iconCol2"></i>
+Dễ dàng chăm sóc khách hàng đa kênh
+</button>
+</h5>
+</div>
+<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+<div class="card-body">
+Sau khi kết nối khách hàng trên Zalo, bạn cũng có thể gửi lời mời
+kết bạn với khách hàng trên Facebook để có thể dễ dàng trao đổi với
+khách hàng hơn.
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header" id="headingThree">
+<h5 class="mb-0">
+<button id="btn_collap3" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i id="iconCol3" class="fa fa-chevron-right"></i>
+Tạo ra trải nghiệm "WOW" trong mắt khách hàng
+</button>
+</h5>
+</div>
+<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+<div class="card-body">
+Khách hàng sẽ cảm thấy “WOW” với cách làm việc cực kỳ chuyên nghiệp
+của bạn. Biết khách hàng là ai trên Facebook chính là minh chứng cho
+việc chúng ta rất quan tâm đến khách hàng của mình.
+</div>
+</div>
+</div>
+</div>
+</div>
+ <a href="" id="findHistory" style="position: absolute; left: 0%;">Lịch sử
+tìm kiếm </a>
+</div>
+<div id="menu1" class="tab-pane fade in active show">
+<h5 class="p-2">Công cụ miễn phí giúp bạn dễ dàng lấy UID Facebook một cách dễ dàng.
+</h5>
+<p class="p-1 m-auto" style="width: 85%; font-size: smaller; margin-bottom: 30px!important;">Bằng cách nhập dữ liệu trên hệ thống tìm kiếm
+của chúng
+tôi, bạn đã đồng ý với
+<a style="color: #0063FF;" href="https://atpsoftware.vn/dieu-khoan-su-dung.html" target="_blank">Điều khoản sử dụng</a> và <a style="color: #0063FF;" target="_blank" href="https://atpsoftware.vn/chinh-sach-bao-mat.html">Chính sách bảo mật</a> của chúng
+tôi.</p>
+<form action="https://id.atpsoftware.vn/" method="POST">
+<div class="input-group mb-3 m-auto" style="width: 90%;">
+<input type="text" placeholder="Nhập link facebook" name="linkCheckUid" class="form-control" style="background-color: #e9ebeb;border-top-left-radius: 20px;border-bottom-left-radius: 20px; border: 2px solid blue;" value="">
+<div class="input-group-append">
+<button class="btn btn-primary" type="submit" style="border-top-right-radius: 20px;border-bottom-right-radius: 20px; width: 70px;"><i class="fa fa-search"></i></button>
+</div>
+</div>
+<button data-toggle="modal" data-target="#ModalHdsd" type="button" class="btn btn-secondary mt-4"><i class="fa fa-question-circle-o"></i>
+Hướng dẫn sử dụng</button>
+<br>
+</form>
+<div class="modal fade" id="ModalHdsd" tabindex="-1" role="dialog" aria-labelledby="ModalHdsdLongTitle" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document" id="modalhuongdan">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="container" style="text-align: left; padding: 10px;">
+<h2><i class="fa fa-windows text-primary mr-2"></i>Trình duyệt máy
+tính</h2>
+<div class="row">
+<div class="col-md-12">
+<h3><i class="fa fa-hand-o-right  text-warning"></i> Bước 1
+</h3>
+</div>
+</div>
+ <div class="row">
+<div class="col-md-6">
+<img class="w-100" src="./img/pc.png" alt="">
+</div>
+<div class="col-md-6"><i class="fa fa-hand-pointer-o text-danger"></i>
+"CLICK" chuột phải
+vào tên người dùng Facebook cần lấy UID
+chọn "Copy link adress" hoặc "sao chép liên kết"
+</div>
+</div>
+<div class="row" style="border-top: 2px black dashed;">
+<div class="col-md-12">
+<h3><i class="fa fa-hand-o-right text-warning"></i>Bước 2
+</h3>
+</div>
+</div>
+<div class="row" style="border-bottom: 2px black dashed;">
+<div class="col-md-6">
+<img class="w-100" src="./img/timuid.png" alt="">
+</div>
+<div class="col-md-6">
+<i class="fa fa-hand-pointer-o text-danger"></i>Truy cập
+finduid.com chọn tab "Tìm UID Facebook"
+dán link vừa sao chép vào ô tìm kiếm
+bấm nút "tìm kiếm"
+</div>
+</div>
+<div class="row" style="border-bottom: 2px black dashed;">
+<div class="col-md-6">
+<img class="w-100" src="./img/results-uid.png" alt="">
+</div>
+<div class="col-md-6">
+<br>
+<br>
+<br>
+<i class="fa fa-hand-pointer-o text-danger"></i>Đây là UID
+Facebook bạn cần tìm kiếm!
+</div>
+</div>
+<h2><i class="fa fa-mobile text-info mr-2"></i>Trình duyệt Mobile
+</h2>
+<div style="background-color: #53585c; color: white; text-align: center;">
+<br>
+<h4><i class="fa fa-hand-o-right text-warning"></i>Bước 1</h4>
+<p>Truy cập vào trang cá nhân cần lấy UID</p>
+<p>Nhấn vào tuỳ chọn</p>
+<p>Nhấn nút "sao chép liên kết"</p>
+<div class="row" style="border-bottom: 2px black dashed;">
+<div class="col-md-6">
+<img class="w-100" src="./img/mobile-profile.png" alt="">
+</div>
+<div class="col-md-6">
+<img class="w-100" src="./img/mobile-profile-copy-link.png" alt="">
+</div>
+</div>
+<br>
+<h4><i class="fa fa-hand-o-right text-warning"></i>Bước 2</h4>
+<p>Truy cập trang finduid.com</p>
+<p>Dán link vừa sao chép</p>
+<p>Nhấn nút tìm kiếm UID</p>
+<div class="row" style="border-bottom: 2px black dashed;">
+<div class="col-md-6">
+<img class="w-100" src="./img/import-link.png" alt="">
+</div>
+<div class="col-md-6">
+<img class="w-100" src="./img/mobile-results.png" alt="">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-2 col-sm-12" style=" background-position: bottom; background-repeat: no-repeat; background-size: 100% 50%;">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="032791ce49874707732c45ec-text/javascript"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:240px;height:550px" data-ad-client="ca-pub-8158668856335926" data-ad-slot="5477678498"></ins>
+<script type="032791ce49874707732c45ec-text/javascript">
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+</div>
+</div>
+
+<center>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="032791ce49874707732c45ec-text/javascript"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8158668856335926" data-ad-slot="1704114701" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script type="032791ce49874707732c45ec-text/javascript">
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+</center>
+
+<div class="row" style="text-align: left; background-color: aliceblue;">
+<div class="col-md-1"></div>
+<div class="col-md-5">
+<h3 class="mt-5 mb-5">TÌM KIẾM NICK FACEBOOK DỄ DÀNG</h3>
+<p>Như các bạn đã biết, Facebook đã chặn tìm kiếm nick facebook theo số điện thoại, nhưng với
+atpsoftware.vn/finduid bạn hoàn toàn dễ dàng có thể kiểm tra SĐT có đăng ký Facebook hay không mà
+không lo Facebook chặn</p>
+<img src="./img/Web-Developement.png" alt="" class="w-50 mt-5 mb-5" style="margin-left: 20%;">
+<h3 class="mt-5 mb-5">TIẾP CẬN DỄ DÀNG HƠN VỚI FINDUID</h3>
+<p>Bạn không còn kho khăn trong việc tìm kiếm khách hàng trên Faceook nữa, với atpsoftware.vn/finduid hỗ
+trợ đăc lực cho những anh em làm bất động sản, telesale....</p>
+</div>
+<div class="col-md-4">
+<img src="./img/finduid-1140x522.png" alt="" class="w-50 mt-5 mb-5" style="margin-left: 20%;">
+<h3 class="mt-5 mb-5">GIAO DIỆN TRỰC QUAN DỄ DÀNG SỬ DỤNG</h3>
+<p>Chỉ với vài thao tác đơn giản bạn có thể tìm tài khoản Facebook bạn bè, khách hàng, đối tác,… để kết
+nối trên Facebook</p>
+<img src="./img/976.png" alt="" class="w-50 mt-5 mb-5" style="margin-left: 20%;">
+</div>
+<div class="col-md-1"></div>
+</div>
+<div class="container">
+<div class="row text-center">
+<div class="col-sm-12">
+<h2 class="tool text-center">TIỆN ÍCH HỖ TRỢ KHÁC</h2>
+<div id="scroll-target"></div>
+</div>
+<div class="col-sm-3">
+<div class="plan">
+<h3>#ATP Content</h3>
+<div class="pricing-icon">
+<img class="rounded-circle" src="https://atpsoftware.vn/wp-content/uploads//2020/12/youtube.png" width="70" alt="Pricing">
+</div>
+<div class="price">MIỄN PHÍ
+<br>
+</div>
+<ul class="pricing-list">
+<li>Tự động phát hiện và đánh dấu các từ khoá vi phạm chính sách của FB khi chạy quảng cáo.</li>
+<li>Check số lượng lớn từ khoá (keywords) trên 1 bài viết, post chạy ads.</li>
+<li>Bộ lọc mặc định với hơn 100 từ & cặp từ mặc định bị cấm theo policy</li>
+<li>Tuỳ chọn mã màu chỗ mỗi bộ từ khoá</li>
+</ul>
+<a href="https://sum.vn/bT3tL" target="_blank" class="btn btn-action btn-edge wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">TẢI FILE CÀI ĐẶT</a>
+<a disabled="" href="https://sum.vn/bT3tL" class="btn btn-primary btn-action btn-green wow fadeInLeft  disabled animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">Cửa hàng chrome</a>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="plan">
+<h3>#Sum.vn</h3>
+<div class="pricing-icon">
+<img class="rounded-circle" src="https://atpsoftware.vn/wp-content/uploads//2020/12/link.png" width="70" alt="Pricing">
+</div>
+<div class="price">MIỄN PHÍ<br>
+</div>
+<ul class="pricing-list">
+<li>Hệ thống rút gọn link hoàn toàn miễn phí.</li>
+<li>Tên miền ngắn dễ nhớ, tiết kiệm ký tự khi gửi sms.</li>
+<li>Biến những đường link dài, khó nhớ trở nên đơn giản hơn.</li>
+<li>Dễ dàng tạo các link tuỳ biến dạng sum.vn/abc </li>
+<li>Hệ thống hỗ trợ thống kê lưu lượng truy cập link trực quan.</li>
+<li>Tạo link rút gọn siêu tốc trong 5s.</li>
+</ul>
+<a href="https://sum.vn/" target="_blank" class="btn btn-action btn-edge wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">TẢI FILE CÀI ĐẶT</a>
+<a href="https://sum.vn/TVfSG" target="_blank" class="btn btn-primary btn-action btn-green wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">CỬA HÀNG CHROME</a>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="plan">
+<h3>#Backup Likepage</h3>
+<div class="pricing-icon">
+<img class="rounded-circle" src="https://token.atpsoftware.vn/assets/icons/page.png" width="70" alt="Pricing">
+</div>
+<div class="price">MIỄN Phí<br>
+</div>
+<ul class="pricing-list-three">
+<li>Không giới hạn số lượng like fanpage</li>
+<li>Không giới hạn số lượng lần quét like</li>
+<li>Giao diện trực quan, dễ thao tác chỉ với 1 CLICK</li>
+<li>Hệ thống quét Like Fanpage mạnh mẽ hàng đầu Việt Nam</li>
+<li>Miễn phí trọn đời</li>
+</ul>
+<a href="https://sum.vn/E8qTv" class="btn btn-action btn-edge wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">TẢI FILE CÀI ĐẶT</a>
+<a disabled="" href="#" class="btn btn-primary btn-action btn-green wow fadeInLeft  disabled animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">Cửa hàng chrome</a>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="plan">
+<h3>#Simple Seeding</h3>
+<div class="pricing-icon">
+<img class="rounded-circle" src="https://token.atpsoftware.vn/assets/icons/logo-seed.png" width="70" alt="Pricing">
+</div>
+<div class="price">
+MIỄN PHÍ
+<br>
+</div>
+<ul class="pricing-list-four">
+<li>Tăng like bài viết</li>
+<li>Tăng bình luận bài viết theo kịch bản soạn sẵn</li>
+<li>Nội dung seeding không bị trùng lắp</li>
+<li>Tài khoản comment toàn bộ là người dùng Facebook thật</li>
+</ul>
+<a href="https://sum.vn/mUcn1" class="btn btn-action btn-edge wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">TẢI FILE CÀI ĐẶT</a>
+<a disabled="" href="#" class="btn btn-primary btn-action btn-green wow fadeInLeft  disabled animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">Cửa hàng chrome</a>
+</div>
+</div>
+</div>
+</div>
+<div class="row" style="height: 200px; background-color: aliceblue;">
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+
+<div class="row shadow" id="footer" style="opacity: 0; position: fixed; bottom: 0; width: 100%;">
+<div class="col-md-4 col-sm-12" style="position: relative;">
+<img src="./img/cat-2-1140x695.png" alt="" class="w-50">
+</div>
+<div class="col-md-4 col-sm-12 p-3" style="border-left: 2px black dotted;border-right: 2px black dotted;">
+<ul>
+<li style="text-align: left;"><a href="">Thêm số lượng tìm kiếm (+50)</a></li>
+<li style="text-align: left;"><a href="">Tìm kiếm nhanh thông tin (website rao vặt, Facebook…)</a>
+</li>
+</ul>
+</div>
+<div class="col-md-4 col-sm-12 pt-3">
+<button id="btn_addto" style="border-radius: 10px;" type="button" class="btn btn-primary">THÊM VÀO
+CHROME</button>
+</div>
+</div>
+</div>
+<script type="032791ce49874707732c45ec-text/javascript" src="https://www.google.com/recaptcha/api.js?hl=6LcvvTkUAAAAAPtXc8a8d1Z8cKAQnExu8pqbIRIH "></script>
+<script type="032791ce49874707732c45ec-text/javascript">
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
+</script>
+<script type="032791ce49874707732c45ec-text/javascript">
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("header").style.top = "0";
+            } else {
+                document.getElementById("header").style.top = "-100%";
+            }
+            prevScrollpos = currentScrollPos;
+            console.log(currentScrollPos + window.innerHeight + " , " + document.body.offsetHeight);
+            if (currentScrollPos + window.innerHeight >= (document.body.offsetHeight - 10)) {
+                document.getElementById("footer").style.opacity = "1";
+            } else document.getElementById("footer").style.opacity = "0";
+        }
+
+        document.getElementById("get_fb").addEventListener("click", function () {
+            document.getElementById("get_fb").style.borderBottom = "3px blue solid";
+            document.getElementById("get_uid").style.borderBottom = "";
+        });
+        document.getElementById("get_uid").addEventListener("click", function () {
+            document.getElementById("get_uid").style.borderBottom = "3px blue solid";
+            document.getElementById("get_fb").style.borderBottom = "";
+        });
+        var fl = true;
+        document.getElementById("btn_collap1").addEventListener("click", function () {
+            if (fl) {
+                document.getElementById("iconCol1").className = "fa fa-chevron-down";
+
+            } else {
+                document.getElementById("iconCol1").className = "fa fa-chevron-right";
+            }
+            fl = !fl;
+        })
+        document.getElementById("btn_collap2").addEventListener("click", function () {
+            if (fl) {
+                document.getElementById("iconCol2").className = "fa fa-chevron-down";
+
+            } else {
+                document.getElementById("iconCol2").className = "fa fa-chevron-right";
+            }
+            fl = !fl;
+        })
+        document.getElementById("btn_collap3").addEventListener("click", function () {
+            if (fl) {
+                document.getElementById("iconCol3").className = "fa fa-chevron-down";
+
+            } else {
+                document.getElementById("iconCol3").className = "fa fa-chevron-right";
+            }
+            fl = !fl;
+        })
+        document.getElementById("tip1").addEventListener("click", function () {
+            window.open(
+                "https://atpsoftware.vn/cach-tim-facebook-nhanh-bang-sdt-va-lay-id-facebook-nhanh-chong-tai-finduid-com.html"
+            );
+        })
+        document.getElementById("tip2").addEventListener("click", function () {
+            window.open("https://atpsoftware.vn/huong-dan-ket-ban-full-2k-ban-zalo-khong-can-sdt.html");
+        })
+        document.getElementById("tip3").addEventListener("click", function () {
+            window.open(
+                "https://atpsoftware.vn/vi-sao-nen-ban-hang-tren-zalo-lam-the-nao-de-full-2000-ban-zalo.html"
+            );
+        })
+        document.getElementById("tip4").addEventListener("click", function () {
+            window.open(
+                "https://atpsoftware.vn/vi-sao-nen-ban-hang-tren-zalo-lam-the-nao-de-full-2000-ban-zalo.html"
+            );
+        })
+
+        // if(window.innerWidth<=600){
+        //     document.getElementById("modalhuongdan").classList.add("modal-sm")
+        // }
+    </script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-89205409-2" type="032791ce49874707732c45ec-text/javascript"></script>
+<script type="032791ce49874707732c45ec-text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-89205409-2');
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" type="032791ce49874707732c45ec-text/javascript">
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" type="032791ce49874707732c45ec-text/javascript">
+    </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" type="032791ce49874707732c45ec-text/javascript">
+    </script>
+<script type="032791ce49874707732c45ec-text/javascript" src="https://www.google.com/recaptcha/api.js?hl=6LcvvTkUAAAAAPtXc8a8d1Z8cKAQnExu8pqbIRIH "></script>
+<script type="032791ce49874707732c45ec-text/javascript">
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V59TKHQF7W" type="032791ce49874707732c45ec-text/javascript"></script>
+<script type="032791ce49874707732c45ec-text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V59TKHQF7W');
+</script>
+
+<script type="032791ce49874707732c45ec-text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/560fb9c63e33bee649f598d6/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="032791ce49874707732c45ec-|49" defer=""></script></body>
+</html>
